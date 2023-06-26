@@ -11,8 +11,8 @@ node {
         withCredentials([file(credentialsId: 'gcp', variable: 'GC_KEY')]) {
             sh("gcloud auth activate-service-account --key-file=${GC_KEY}")
             sh 'gcloud auth configure-docker europe-north1-docker.pkg.dev'
-            sh 'npm install'
-            sh 'npm run build'
+            // sh 'npm install'
+            // sh 'npm run build'
             sh 'docker build -t ${REGISTRY_URL}/${PROJECT_ID}/${ARTIFACT_REGISTRY}/myplanet .'
             sh 'gcloud docker -- push ${REGISTRY_URL}/${PROJECT_ID}/${ARTIFACT_REGISTRY}/myplanet'
         }
