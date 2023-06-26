@@ -22,12 +22,12 @@
             <li>
                 <a *ngIf="auth.getAuthUserFromCache()!==undefined" class="scroll-link" href="history"><i class="fas fa-pencil-alt"></i> History</a>
             </li>
-            <li>
+            <!-- <li>
                 <a *ngIf="auth.getAuthUserFromCache()!==undefined" class="scroll-link" href="account"><i class="fas fa-envelope"></i>Account</a>
-            </li>
-            <li>
+            </li> -->
+            <!-- <li>
                 <a *ngIf="auth.getAuthUserFromCache()!==undefined" class="scroll-link" href="carbon"><i class="fas fa-envelope"></i>Carbon</a>
-            </li>
+            </li> -->
             <li>
                 <div>
                     <a *ngIf="auth.getAuthUserFromCache()===undefined" class="scroll-link" (click)="showLoginComponent()"><i class="fas fa-envelope"></i>Login</a>
