@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
       - name: myplanet
-        image: IMAGE_URL/myplanet
+        image: IMAGE_URL/myplanet:latest
         ports:
         - containerPort: 80
 ---
