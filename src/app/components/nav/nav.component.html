@@ -1,0 +1,50 @@
+<div class="wrapper">
+    <nav class="sidebar" [ngClass]="{'active': isActive}">
+ 
+        <div class="dismiss" (click)="toggleSidebar()">
+            <i class="fas fa-arrow-left" ></i>
+        </div>
+ 
+        <div class="logo">
+            <h3><a href="index.html">MyPlanet</a></h3>
+        </div>
+ 
+        <ul class="list-unstyled menu-elements">
+            <li class="active">
+                <a class="scroll-link" href="map"><i class="fas fa-home"></i> Home</a>
+            </li>
+            <li>
+                <a *ngIf="auth.getAuthUserFromCache()!==undefined" class="scroll-link" href="plan"><i class="fas fa-cog"></i>Plan</a>
+            </li>
+            <li>
+                <a *ngIf="auth.getAuthUserFromCache()!==undefined" class="scroll-link" href="activity"><i class="fas fa-user"></i>Activity</a>
+            </li>
+            <li>
+                <a *ngIf="auth.getAuthUserFromCache()!==undefined" class="scroll-link" href="history"><i class="fas fa-pencil-alt"></i> History</a>
+            </li>
+            <li>
+                <a *ngIf="auth.getAuthUserFromCache()!==undefined" class="scroll-link" href="account"><i class="fas fa-envelope"></i>Account</a>
+            </li>
+            <li>
+                <a *ngIf="auth.getAuthUserFromCache()!==undefined" class="scroll-link" href="carbon"><i class="fas fa-envelope"></i>Carbon</a>
+            </li>
+            <li>
+                <div>
+                    <a *ngIf="auth.getAuthUserFromCache()===undefined" class="scroll-link" (click)="showLoginComponent()"><i class="fas fa-envelope"></i>Login</a>
+                    <a *ngIf="auth.getAuthUserFromCache()!==undefined" class="scroll-link"><i class="fas fa-envelope" (click)="handleLogout()"></i>Logout</a>
+                </div>
+            </li>
+        </ul>
+ 
+        <div class="dark-light-buttons">
+            <a class="btn btn-primary btn-customized-4 btn-customized-dark" (click)="setLight(false)" href="#" role="button">Dark</a>
+            <a class="btn btn-primary btn-customized-4 btn-customized-light" (click)="setLight(true)" href="#" role="button">Light</a>
+        </div>
+ 
+    </nav>
+    <div class="content">
+        <a class="btn btn-primary btn-customized open-menu" (click)="toggleSidebar()" role="button">
+            <i class="fas fa-align-left"></i> <span>Menu</span>
+        </a>
+    </div>
+</div>

@@ -1,0 +1,25 @@
+<div class="dashboard">
+  <div class="toolbar">
+    <button class="green-button" (click)="offset()">Ofsett</button>
+    <button class="orange-button" (click)="emission()">Emission</button>
+  </div>
+
+  <div class="sidenav">
+    <!-- Sidenav content -->
+  </div>
+
+  <div class="content">
+    <div class="card" id="card1">
+      <app-bar-chart class="bar-chart"></app-bar-chart>
+    </div>
+    <div class="card" id="card2">
+      <app-pie-chart class="pie-chart"></app-pie-chart>
+    </div>
+    <div class="card" id="card3">
+      <app-side-by-side-chart class="sidechart"></app-side-by-side-chart>
+    </div>
+    <!-- <div class="card" id="card4">
+      <app-line-chart class="line-chart"></app-line-chart>
+    </div> -->
+  </div>
+</div>

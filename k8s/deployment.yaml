@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myplanet
+spec:
+  selector:
+    matchLabels:
+      app: myplanet
+  template:
+    metadata:
+      labels:
+        app: myplanet
+    spec:
+      containers:
+      - name: myplanet
+        image: IMAGE_URL/myplanet
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: myplanet-service-svc
+spec:
+  type: LoadBalancer
+  selector:
+    app: myplanet
+  ports:
+  - port: 80
+        

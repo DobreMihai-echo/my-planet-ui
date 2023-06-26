@@ -1,0 +1,33 @@
+<div class="card">
+  <div class="header" [style.background]="'linear-gradient(to right, '+mycolor+', #faf0f0)'">
+    <div class="upper d-flex justify-content-between">
+      <!-- start of the container -->
+      <div>
+        <div class="mb-3" *ngIf="postTags && postTags.length > 0">
+          <span class="badge rounded-pill text-dark fw-normal d-inline-block position-relative text-center m-2"
+            style="font-size: 16px; background-color: rgba(0,0,0,0.1);" *ngFor="let tag of postTags" [ngClass]="tag.action === 'remove' ? 'd-none visually-hidden' : ''">
+            {{tag.tagName}}
+            <span class="position-absolute top-0 start-100 translate-middle bg-danger fw-bold text-white rounded-circle text-center cursor-pointer"
+              style="width: 20px; height: 20px; line-height: 20px;" matTooltip="Remove Tag" matTooltipPosition="above" (click)="removeTag(tag)">-</span>
+          </span>
+        </div>
+        <div class="level-type">
+          <p>{{points > 60 ? 'Hard' : points > 30 ? 'Medium' : 'Easy'}}</p>
+        </div>
+      </div>
+      <!-- end of the start container -->
+
+      <!-- start of the end container -->
+      <div class="points">
+        <img src="assets/bitcoin.svg"/>
+        <span>{{points}}</span>
+      </div>
+      <!-- end of the end container -->
+    </div>
+
+    <div class="content">
+      <span class="title">{{title}}</span>
+      <p class="message">{{description}}</p>
+    </div>
+  </div>
+</div>

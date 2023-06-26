@@ -1,0 +1,100 @@
+<div class="center">
+
+    <div *ngIf="marker" class="card">
+      <div class="additional">
+        <div class="user-card">
+          <div class="level center">
+            Level 13
+          </div>
+          <div class="points center">
+            5,312 Points
+          </div>
+          <img src="assets/user.svg"/>
+          <div class="action-buttons">
+
+            <button *ngIf="isAuthUser(marker.username); else notAuthUser" mat-mini-fab matTooltip="Accent" color="warn" aria-label="Example mini fab with a heart icon" (click)="deleteMarker(marker.id)">
+              <mat-icon>delete</mat-icon>
+            </button>
+            
+            <ng-template #notAuthUser>
+              <button *ngIf="isJoiner(); else elseBlock" mat-mini-fab matTooltip="Accent" color="warn" aria-label="Example mini fab" (click)="unjoin(marker.id)">
+                <mat-icon>gavel</mat-icon>
+              </button>
+              
+              <ng-template #elseBlock>
+                <button mat-mini-fab matTooltip="Accent" color="warn" aria-label="Example mini fab with a heart icon" (click)="join(marker.id)">
+                  <mat-icon>favorite</mat-icon>
+                </button>
+              </ng-template>
+            </ng-template>
+            <button mat-mini-fab matTooltip="Accent" color="primary" aria-label="Example mini fab with a heart icon">
+              <i class="fas fa-comment" (click)="comments(marker.id)"></i>
+            </button>
+            <button mat-mini-fab matTooltip="Accent" color="primary" aria-label="Example mini fab with a heart icon">
+              <i class="fas fa-share" (click)="updateMarker(marker.id)"></i>
+            </button>
+          </div>
+        </div>
+        <div class="more-info">
+          <h1>{{ marker.type }}</h1>
+          <div class="coords">
+            <span>Description</span>
+          </div>
+          <div class="coords">
+            <span>{{marker.description}}</span>
+          </div>
+          <div class="coords">
+            <span>When?</span>
+          </div>
+          <div class="coords">
+            <span>{{marker.date}}</span>
+          </div>
+          <div class="coords">
+            <span>Nr of joiners: {{eventJoiners.length}}</span>
+          </div>
+          <div>
+
+            <div *ngIf="eventJoiners.length > 0" class="joiners">
+              <owl-carousel-o [options]="customOptions" class="joiner">
+                <ng-container *ngFor="let joiner of eventJoiners">
+                  <ng-template carouselSlide>
+                    <a href="users/{{joiner.id}}"><app-joiners></app-joiners></a>
+                  </ng-template>
+                </ng-container>
+              </owl-carousel-o>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+      <div class="general">
+        <h1>{{ markerCreator?.username }}</h1>
+        <p>Name: {{ markerCreator?.firstName }} </p>
+        <p>Email: {{ markerCreator?.email }} </p>
+        <span class="more">Mouse over the card for more info</span>
+
+        <div class="stats">
+          <div>
+            <div class="title">Trees</div>
+            <i class="fa fa-tree"></i>
+            <div class="value">2</div>
+          </div>
+          <div>
+            <div class="title">Events</div>
+            <i class="fas fa-industry"></i>
+            <div class="value">27</div>
+          </div>
+          <div>
+            <div class="title">Pals</div>
+            <i class="fa fa-group"></i>
+            <div class="value">1</div>
+          </div>
+          <div>
+            <div class="title">Area</div>
+            <i class="fa fa-archive"></i>
+            <div class="value">2</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,30 @@
+<div class="my-google-map">
+    <google-map [center]="currentLocation" width="100%" height="100%" (mapDblclick)="addMarker($event)"> 
+        <ng-container>
+            <div *ngFor="let marker of markers; let i = index">
+                <map-marker #mymarker="mapMarker" 
+                [position]="{ lat: marker.latitude, lng: marker.longitude}" 
+                (mapClick)="openInfoWindow(mymarker,i)" 
+                [options]="auth.getAuthUsername() == marker.username? {icon: { url:'http://maps.google.com/mapfiles/ms/icons/green-dot.png' }, zIndex: 100} : {}">
+                    <map-info-window #infoWindow="mapInfoWindow">
+                        <app-events [marker]="marker" (delete)="onDeleteMarker($event)" (update)="onUpdateMarker($event)"></app-events>
+                    </map-info-window>
+                </map-marker>
+            </div>
+        </ng-container>
+    </google-map>
+    <ng-container *ngIf="showLogin">
+        <div class="overlay">
+          <div class="outer-form">
+            <app-login (switchForm)="switchToRegister()" class="form-class"> </app-login>
+          </div>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="showRegister">
+        <div class="overlay">
+          <div class="outer-form">
+            <app-register (switchForm)="switchToLogin()" class="form-class-register"> </app-register>
+          </div>
+        </div>
+      </ng-container>
+</div>

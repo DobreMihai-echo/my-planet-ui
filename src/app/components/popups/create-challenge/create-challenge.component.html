@@ -1,0 +1,48 @@
+<div mat-dialog-content>
+    <p>Please select challenges you wish to make</p>
+      <div class="example-container">
+          <h2>Choices</h2>
+          <div class="pick data">
+           
+
+            <form [formGroup]="createChallengeForm" (ngSubmit)="onSubmit()" class="create-form">
+              <div class="mb-3">
+                <label for="">Title:</label>
+                <input formControlName="title" [(ngModel)]="title" placeholder="Please insert a title">
+              </div>
+              <div class="mb-3">
+                  <label for="">Description:</label>
+                  <input formControlName="description" [(ngModel)]="description">
+              </div>
+              <div class="mb-3">
+                <label for="">Points:</label>
+                <input min="10" max="100" step="1" value="0" formControlName="points" [(ngModel)]="points" type="range"/>
+              </div>
+              <div class="mb-3">
+                <label for="">Color:</label>
+                <input formControlName="mycolor"
+                        [style.background]="mycolor"
+                        autocomplete="off"
+                        [(colorPicker)]="mycolor"
+                        [cpPosition]="'bottom'"
+                        placeholder="Colour" />
+              </div>
+              <button class="submit-btn" mat-stroked-button type="submit" [disabled]="!createChallengeForm.valid">Save</button>
+            </form>
+            <button mat-icon-button color="primary" matTooltip="Add New Tag" matTooltipPosition="left" class="float-end" (click)="openAddTagDialog($event)">
+              <mat-icon>style</mat-icon>
+            </button>
+            
+        </div>
+      </div>
+      <div class="example-container">
+          <h2>Card</h2>
+          <div class="card-example">
+            <app-challenge-card class="card" [title]="title" [points]="points" [mycolor]="mycolor" [description]="description" [postTags]="postTags"></app-challenge-card>
+        </div>
+      </div>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Cancel</button>
+    <button mat-button>Create</button>
+  </div>

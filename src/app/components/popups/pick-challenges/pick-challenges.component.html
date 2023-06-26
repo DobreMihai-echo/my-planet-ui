@@ -1,0 +1,32 @@
+<div mat-dialog-content>
+  <p>Please select challenges you wish to make</p>
+  <div cdkDropListGroup>
+    <div class="example-container">
+        <h2>To do</h2>
+
+        <div cdkDropList
+        [cdkDropListData]="todo"
+        class="example-list"
+        (cdkDropListDropped)="drop($event)">
+            <div class="example-box" *ngFor="let item of todo" cdkDrag [cdkDragData]="item">{{item.title}}</div>
+        </div>
+    </div>
+    <div class="example-container">
+        <h2>Challenges</h2>
+        <button mat-raised-button (click)="openDialog()">Create challenge</button>
+        <div cdkDropList
+            [cdkDropListData]="paginatedDone"
+            class="example-list example-list-card"
+            (cdkDropListDropped)="drop($event)">
+            <div class="example-box" *ngFor="let item of paginatedDone" cdkDrag [cdkDragData]="item"> <app-challenge-card class="card" [title]="item.title" [points]="item.points" [mycolor]="item.color" [postTags]="item.challengeTags"></app-challenge-card></div>
+        </div>
+        <button (click)="prev()" [disabled]="currentPage === 1">Prev</button>
+        <span>{{currentPage}}</span>
+        <button (click)="next()" [disabled]="currentPage === 4">Next</button>
+    </div>
+  </div>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button cdkFocusInitial (click)="saveCard()">Save</button>
+</div>

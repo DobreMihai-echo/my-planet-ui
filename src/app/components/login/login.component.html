@@ -1,0 +1,24 @@
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
+  <mat-grid-list cols="1" rowHeight="500px">
+    <mat-grid-tile>
+      <div class="example-container">
+        <br>
+        <mat-form-field appearance="fill" class="width-100">
+          <mat-label>Username</mat-label>
+          <input matInput formControlName="username">
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="fill" class="width-100">
+          <mat-label>Enter password</mat-label>
+          <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        </mat-form-field>
+      </div>
+    </mat-grid-tile>
+    <p class="alternative">Don't have an account? <a class="scroll-link" (click)="switchToRegister()">Login</a></p>
+  </mat-grid-list>
+  
+  <button class="submit-btn" mat-stroked-button type="submit" [disabled]="!loginForm.valid">Sign IN</button>
+</form>

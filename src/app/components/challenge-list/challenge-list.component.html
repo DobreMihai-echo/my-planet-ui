@@ -1,0 +1,20 @@
+<div class="container">
+    <div class="information">
+        <div class="inf">
+            <div class="points">
+                <span class="level">{{challenge.level}}</span>
+                <div *ngFor="let tags of challenge.challengeTags">
+                    <span>{{tags}}</span>
+                </div>
+                <img class="points-img" src="assets/bitcoin.svg"/>
+                <span>{{challenge.points}}</span>
+            </div>
+            <h4>{{challenge.title}}</h4>
+            <div class="joiners">
+                <mat-icon>group</mat-icon>
+                <span>{{challenge.challengeJoiners.length}}</span>
+            </div>
+        </div>
+    </div>
+    <button (click)="complete()">Complete now</button>
+</div>

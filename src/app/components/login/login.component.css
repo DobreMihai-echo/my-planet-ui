@@ -1,0 +1,19 @@
+  .login-form {
+    position: relative;
+  }
+  .example-radio-button{margin-left: 7px;}
+  mat-grid-tile {
+    background:#fafafa;
+    min-height: 400px;
+  }
+  .width-50{width: 49%;}
+  .ml-1{margin-left: 1%;}
+  .ml-2{margin-left: 2%;}
+  .width-100{width: 100%;}
+  .width-25{width: 25%;}
+  
+  .submit-btn{
+      position: absolute;
+      bottom:0;
+      right:0;
+  }

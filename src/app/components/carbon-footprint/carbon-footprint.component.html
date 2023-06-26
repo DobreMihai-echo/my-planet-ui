@@ -1,0 +1,178 @@
+<h1 class="text-2xl text-center mt-8">Your carbon footprint in:</h1>
+<div class="flex sm:flex-row flex-col flex-wrap justify-center text-xl">
+  <div id="result" class="mat-elevation-z2 rounded-lg m-5 py-8 p-5 sm:w-1/4 w-11/12 border-2 border-green-400 rounded-2xl animate-slideL bg-white/30 hover:bg-white/50">
+    <h1>Comparison to other options: <span id="severity" #severityElement class="font-bold">Neutral</span></h1>
+  </div>
+  <div id="result" class="mat-elevation-z2 rounded-lg m-5 py-8 p-5 sm:w-1/4 w-11/12 border-2 border-green-400 rounded-2xl animate-fadeL bg-white/30 hover:bg-white/50">
+    <h1>CO2e in Kg<button mat-icon-button ><mat-icon>help_outline</mat-icon></button>: <span #cfElement id="cf" class="font-bold cursor-pointer">{{carbonF.toFixed(3)}}</span></h1>
+    <!-- <h1 id="info" *ngIf="!hidden" class="text-center"><i>CO2e is the amount of CO2 which would have the equivalent global warming impact.</i></h1> -->
+  </div>
+  <div id="result" class="mat-elevation-z2 rounded-lg m-5 py-8 p-5 sm:w-1/4 w-11/12 border-2 border-green-400 rounded-2xl animate-slideR bg-white/30 hover:bg-white/50">
+    <h1>Trees killed: <span id="treeKill" #treeKillElement class="font-bold">{{treeKillElem.toFixed(3)}}</span></h1>
+    <button mat-raised-button color="primary" class="m-2" (click)="save()">Save</button>
+  </div>
+</div>
+
+<h1 class="text-2xl text-center">Calculate:</h1>
+<div class="flex sm:flex-row flex-col flex-wrap justify-center mb-24">
+  <div id="car" class="mat-elevation-z2 rounded-lg m-5 py-8 p-5 sm:w-1/4 w-11/12 border-2 border-green-400 rounded-2xl animate-slideL bg-white/30 hover:bg-white/50">
+    <h1 class="text-xl font-bold">Car</h1>
+    <mat-form-field appearance="outline">
+      <mat-label>Vehicle type</mat-label>
+      <mat-select #carSelect name="cars" id="cars" class="m-2">
+        <mat-option value="SmallDieselCar">Small Diesel Car</mat-option>
+        <mat-option value="MediumDieselCar">Medium Diesel Car</mat-option>
+        <mat-option value="LargeDieselCar">Large Diesel Car</mat-option>
+        <mat-option value="MediumHybridCar">Medium Hybrid Car</mat-option>
+        <mat-option value="LargeHybridCar">Large Hybrid Car</mat-option>
+        <mat-option value="MediumLPGCar">Medium LPG Car</mat-option>
+        <mat-option value="LargeLPGCar">Large LPG Car</mat-option>
+        <mat-option value="MediumCNGCar">Medium CNG Car</mat-option>
+        <mat-option value="LargeCNGCar">Large CNG Car</mat-option>
+        <mat-option value="SmallPetrolVan">Small Petrol/Gasoline Van</mat-option>
+        <mat-option value="LargePetrolVan">Large Petrol/Gasoline Van</mat-option>
+        <mat-option value="SmallDielselVan">Small Diesel Van</mat-option>
+        <mat-option value="MediumDielselVan">Medium Diesel Van</mat-option>
+        <mat-option value="LargeDielselVan">Large Diesel Van</mat-option>
+        <mat-option value="LPGVan">LPG Van</mat-option>
+        <mat-option value="CNGVan">CNG Van</mat-option>
+        <mat-option value="SmallPetrolCar">Small Petrol/Gasoline Car</mat-option>
+        <mat-option value="MediumPetrolCar">Medium Petrol/Gasoline Car</mat-option>
+        <mat-option value="LargePetrolCar">Large Petrol/Gasoline Car</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="outline">
+      <mat-label>Distance (km)</mat-label>
+      <input matInput type="number" placeholder="0" id="cdist" class="p-2 m-2">
+    </mat-form-field>
+    <div>
+      <button mat-raised-button color="primary" class="m-2" (click)="car()">Add</button>
+      <button mat-raised-button color="primary" class="m-2" (click)="reset()">Reset footprint</button>
+    </div>
+  </div>
+
+  <div id="ptrans" class="mat-elevation-z2 rounded-lg m-5 py-8 p-5 sm:w-1/4 w-11/12 border-2 border-green-400 rounded-2xl animate-fadeL bg-white/30 hover:bg-white/50">
+    <h1 class="text-xl font-bold">Public Transit</h1>
+    <mat-form-field appearance="outline">
+      <mat-label>Vehicle type</mat-label>
+      <mat-select #transitSelect name="transit" id="transit" class="m-2">
+        <mat-option value="Taxi">Taxi</mat-option>
+        <mat-option value="ClassicBus">Classic Bus</mat-option>
+        <mat-option value="EcoBus">Eco Bus</mat-option>
+        <mat-option value="Coach">Coach</mat-option>
+        <mat-option value="NationalTrain">National Train</mat-option>
+        <mat-option value="LightRail">Light Rail</mat-option>
+        <mat-option value="Subway">Subway</mat-option>
+        <mat-option value="FerryOnFoot">Ferry On Foot</mat-option>
+        <mat-option value="FerryInCar">Ferry In Car</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="outline">
+      <mat-label>Distance (km)</mat-label>
+      <input matInput type="number" placeholder="0" id="tdist" class="p-2 m-2">
+    </mat-form-field>
+    <div>
+      <button mat-raised-button color="primary" class="m-2" (click)="transit()">Add</button>
+      <button mat-raised-button color="primary" class="m-2" (click)="reset()">Reset footprint</button>
+    </div>
+  </div>
+
+  <div id="plane" class="mat-elevation-z2 rounded-lg m-5 py-8 p-5 sm:w-1/4 w-11/12 border-2 border-green-400 rounded-2xl animate-slideR bg-white/30 hover:bg-white/50">
+    <h1 class="text-xl font-bold">Plane Flight</h1>
+    <mat-form-field appearance="outline">
+      <mat-label>Flight type</mat-label>
+      <mat-select name="flight" id="flight" #flightSelect class="m-2">
+        <mat-option value="DomesticFlight">Domestic Flight</mat-option>
+        <mat-option value="ShortEconomyClassFlight">Short Economy Class Flight</mat-option>
+        <mat-option value="ShortBusinessClassFlight">Short Business Class Flight</mat-option>
+        <mat-option value="LongEconomyClassFlight">Long Economy Class Flight</mat-option>
+        <mat-option value="LongPremiumClassFlight">Long Premium Class Flight</mat-option>
+        <mat-option value="LongBusinessClassFlight">Long Business Class Flight</mat-option>
+        <mat-option value="LongFirstClassFlight">Long First Class Flight</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="outline">
+      <mat-label>Distance (km)</mat-label>
+      <input matInput type="number" placeholder="0" id="fdist" class="p-2 m-2">
+    </mat-form-field>
+    <div>
+      <button mat-raised-button color="primary" class="m-2" (click)="flight()">Add</button>
+      <button mat-raised-button color="primary" class="m-2" (click)="reset()">Reset footprint</button>
+    </div>
+  </div>
+
+  <div id="energy" class="mat-elevation-z2 rounded-lg m-5 py-8 p-5 sm:w-1/4 w-11/12 border-2 border-green-400 rounded-2xl animate-slideL bg-white/30 hover:bg-white/50">
+    <h1 class="text-xl font-bold">Clean Energy (Monthly)</h1>
+    <mat-form-field appearance="outline">
+      <mat-label>Energy type</mat-label>
+      <mat-select #energySelect name="etype" id="etype" class="m-2">
+        <mat-option value="Solar">Solar</mat-option>
+        <mat-option value="Wind">Wind</mat-option>
+        <mat-option value="HydroElectric">Hydro Electric</mat-option>
+        <mat-option value="Biomass">Biomass</mat-option>
+        <mat-option value="Geothermal">Geothermal</mat-option>
+        <mat-option value="Tidal">Tidal</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="outline">
+      <mat-label>Consumption (KWH)</mat-label>
+      <input matInput type="number" placeholder="0" id="edist" class="p-2 m-2">
+    </mat-form-field>
+    <div>
+      <button mat-raised-button color="primary" class="m-2" (click)="energy()">Add</button>
+      <button mat-raised-button color="primary" class="m-2" (click)="reset()">Reset footprint</button>
+    </div>
+  </div>
+
+  <div id="food" class="mat-elevation-z2 rounded-lg m-5 py-8 p-5 sm:w-1/4 w-11/12 border-2 border-green-400 rounded-2xl animate-fadeL bg-white/30 hover:bg-white/50">
+    <h1 class="text-xl font-bold">Food</h1>
+    <mat-form-field appearance="outline">
+      <mat-label>Food type</mat-label>
+      <mat-select name="ftype" id="ftype" class="m-2">
+        <mat-option value="d">Drinks</mat-option>
+        <mat-option value="ss">Snacks/Sugar</mat-option>
+        <mat-option value="os">Oils/Spreads</mat-option>
+        <mat-option value="f">Fruit</mat-option>
+        <mat-option value="v">Vegetables</mat-option>
+        <mat-option value="cb">Cereals/Breads</mat-option>
+        <mat-option value="cfp">Chicken/Fish/Pork</mat-option>
+        <mat-option value="d">Dairy</mat-option>
+        <mat-option value="bl">Beef/Lamb</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="outline">
+      <mat-label>Calories</mat-label>
+      <input matInput type="number" placeholder="0" id="cal" class="p-2 m-2">
+    </mat-form-field>
+    <div>
+      <button mat-raised-button color="primary" class="m-2" (click)="food()">Add</button>
+      <button mat-raised-button color="primary" class="m-2" (click)="reset()">Reset footprint</button>
+    </div>
+  </div>
+
+  <div id="fuel" class="mat-elevation-z2 rounded-lg m-5 py-8 p-5 sm:w-1/4 w-11/12 border-2 border-green-400 rounded-2xl animate-slideR bg-white/30 hover:bg-white/50">
+    <h1 class="text-xl font-bold">Fuel</h1>
+    <mat-form-field appearance="outline">
+      <mat-label>Fuel type</mat-label>
+      <mat-select #fuelSelect name="futype" id="futype" class="m-2">
+        <mat-option value="Petrol">Petrol/Gasoline</mat-option>
+        <mat-option value="Diesel">Diesel/Gasoline</mat-option>
+        <mat-option value="LPG">LPG</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="outline">
+      <mat-label>Litres</mat-label>
+      <input matInput type="number" placeholder="0" id="litre" class="p-2 m-2">
+    </mat-form-field>
+    <div>
+      <button mat-raised-button color="primary" class="m-2" (click)="fuel()">Add</button>
+      <button mat-raised-button color="primary" class="m-2" (click)="reset()">Reset footprint</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,39 @@
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="register-form">
+  <mat-grid-list cols="1" rowHeight="500px">
+    <mat-grid-tile>
+      <div class="example-container">
+        <mat-form-field appearance="fill" class="width-50">
+          <mat-label>First Name</mat-label>
+          <input matInput formControlName="firstName">
+        </mat-form-field>
+    
+        <mat-form-field appearance="fill" class="width-50 ml-2">
+          <mat-label>Surname</mat-label>
+          <input matInput formControlName="surName">
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="fill" class="width-100">
+          <mat-label>Email address</mat-label>
+          <input matInput formControlName="email" placeholder="Ex. pat@example.com">
+        </mat-form-field>
+        <br>
+        <br>
+        <mat-form-field appearance="fill" class="width-100">
+          <mat-label>Username</mat-label>
+          <input matInput formControlName="username">
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="fill" class="width-100">
+          <mat-label>Enter password</mat-label>
+          <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        </mat-form-field>
+        <br>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+  
+  <button class="submit-btn" mat-stroked-button type="submit" [disabled]="!registerForm.valid">Submit</button>
+</form>
