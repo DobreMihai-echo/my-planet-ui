@@ -44,7 +44,8 @@ export class MapComponent implements OnInit {
   }
 
   addMarker(event: google.maps.MapMouseEvent) {
-    const dialogRef = this.dialog.open(DialogComponent);
+    if(this.auth.getAuthUsername()!=undefined || this.auth.getAuthUsername()!=null) {
+      const dialogRef = this.dialog.open(DialogComponent);
 
     dialogRef.afterClosed().subscribe(result => {
     if(result.data) {
@@ -66,6 +67,7 @@ export class MapComponent implements OnInit {
       }
     }
   });
+    }
   }
 
   openInfoWindow(marker: any, index: number) {

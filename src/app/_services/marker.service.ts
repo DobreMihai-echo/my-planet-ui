@@ -8,7 +8,7 @@ import { Observable, catchError, throwError } from 'rxjs';
   providedIn: 'root'
 })
 export class MarkerService {
-  API_URL = 'http://localhost:8070';
+  API_URL = 'events';
 
   constructor(private http: HttpClient) { }
 

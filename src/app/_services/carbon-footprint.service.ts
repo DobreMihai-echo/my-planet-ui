@@ -14,13 +14,13 @@ export class CarbonFootprintService {
     const reqParams = {
       "username": username
     }
-    return this.http.get<CarbonFootprint[]>(`http://localhost:8086/api/carbon-footprint`,{params:reqParams});
+    return this.http.get<CarbonFootprint[]>(`user/api/carbon-footprint`,{params:reqParams});
   }
 
   postCarbonFootprint(carbon:CarbonFootprint, username:string) {
     const reqParams = {
       "username": username
     }
-    return this.http.post(`http://localhost:8086/api/carbon-footprint`,carbon,{params:reqParams});
+    return this.http.post(`user/api/carbon-footprint`,carbon,{params:reqParams});
   }
 }

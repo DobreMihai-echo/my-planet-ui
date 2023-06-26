@@ -14,7 +14,7 @@ export class UserService {
 
 	getUserById(userId: number): Observable<UserResponse> {
     let params = new HttpParams().set('userId',userId);
-		return this.httpClient.get<UserResponse>(`http://localhost:8086/api/userid`,{params:params}).pipe(
+		return this.httpClient.get<UserResponse>(`user/api/userid`,{params:params}).pipe(
       catchError((error: HttpErrorResponse) => {
         return throwError(error); // Properly throw the error so it can be caught in the subscription error handler.
       })
@@ -23,12 +23,12 @@ export class UserService {
 
   getUserByUsername(username: string): Observable<User > {
     let params = new HttpParams().set('username',username);
-		return this.httpClient.get<User>(`http://localhost:8086/api/user`,{params:params});
+		return this.httpClient.get<User>(`user/api/user`,{params:params});
 	}
 
   getUserFollowingList(userId: number, page: number, size: number): Observable<User[]> {
     const reqParams = new HttpParams().set('page', page).set('size', size);
-    return this.httpClient.get<User[]>(`http://localhost:8086/api/users/${userId}/following`, { params: reqParams }).pipe(
+    return this.httpClient.get<User[]>(`user/api/users/${userId}/following`, { params: reqParams }).pipe(
       catchError((error: HttpErrorResponse) => {
         return throwError(error); // Properly throw the error so it can be caught in the subscription error handler.
       })
@@ -37,7 +37,7 @@ export class UserService {
 
   getUserFollowerList(userId: number, page: number, size: number): Observable<User[]> {
     const reqParams = new HttpParams().set('page', page).set('size', size);
-    return this.httpClient.get<User[]>(`http://localhost:8086/api/users/${userId}/follower`, { params: reqParams }).pipe(
+    return this.httpClient.get<User[]>(`user/api/users/${userId}/follower`, { params: reqParams }).pipe(
       catchError((error: HttpErrorResponse) => {
         return throwError(error); // Properly throw the error so it can be caught in the subscription error handler.
       })
@@ -47,7 +47,7 @@ export class UserService {
   updateProfilePhoto(profilePhoto: File): Observable<User> {
 		const formData = new FormData();
 		formData.append('profilePhoto', profilePhoto);
-		return this.httpClient.post<User>(`http://localhost:8086/api/users/account/update/profile-photo`, formData).pipe(
+		return this.httpClient.post<User>(`user/api/users/account/update/profile-photo`, formData).pipe(
       catchError((error: HttpErrorResponse) => {
         return throwError(error);
       })
@@ -55,7 +55,7 @@ export class UserService {
 	}
 
   getUsersByListOfUsernames(usernames:string[]){
-    return this.httpClient.post<User[]>(`http://localhost:8086/api/users/event`,usernames);
+    return this.httpClient.post<User[]>(`user/api/users/event`,usernames);
   }
 
 	// getUserPosts(userId: number, page: number, size: number): Observable<PostResponse[] | HttpErrorResponse> {
@@ -92,16 +92,16 @@ export class UserService {
 	// }
 
 	followUser(userId: number): Observable<any | HttpErrorResponse> {
-		return this.httpClient.post<any | HttpErrorResponse>(`http://localhost:8086/api/account/follow/${userId}`, null);
+		return this.httpClient.post<any | HttpErrorResponse>(`user/api/account/follow/${userId}`, null);
 	}
 
 	unfollowUser(userId: number): Observable<any | HttpErrorResponse> {
-		return this.httpClient.post<any | HttpErrorResponse>(`http://localhost:8086/api/account/unfollow/${userId}`, null);
+		return this.httpClient.post<any | HttpErrorResponse>(`user/api/account/unfollow/${userId}`, null);
 	}
 
 	getUserSearchResult(key: string, page: number, size: number): Observable<UserResponse[]> {
 		const reqParams = new HttpParams().set('key', key).set('page', page).set('size', size);
-		return this.httpClient.get<UserResponse[]>(`http://localhost:8086/api/users/search`, { params: reqParams }).pipe(
+		return this.httpClient.get<UserResponse[]>(`user/api/users/search`, { params: reqParams }).pipe(
       catchError((error: HttpErrorResponse) => {
         return throwError(error);
       })
