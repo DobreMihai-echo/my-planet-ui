@@ -7,6 +7,6 @@ COPY . /app/
 RUN npm run build
 
 # Stage 2 - Serve Angular App via Nginx
-FROM nginx:alpine
-COPY --from=build /app/dist/my-planet-ui /usr/share/nginx/html
-COPY ./nginx-custom.conf /etc/nginx/conf.d/default.conf
+# FROM nginx:alpine
+# COPY --from=build /app/dist/my-planet-ui /usr/share/nginx/html
+# COPY ./nginx-custom.conf /etc/nginx/conf.d/default.conf
